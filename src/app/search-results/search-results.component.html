@@ -1,13 +1,20 @@
 <section class="search">
-    <h2>Search for the author:</h2>
     <article class="searchSection">
-        <input [(ngModel)]="searchText" type="text" name="search" id="search" placeholder="e.g 'Tolkien'">
-        <button (click)="handleSearch()">search</button>
+        <h2>Search Book by Title/Author:</h2>
+        <label for="searchBy">
+            <select [(ngModel)]="searchBy" name="searchBy" id="searchBy">
+                <option [ngValue]="null" disabled selected>Search By</option>
+                <option value="title">Title</option>
+                <option value="author">Author</option>
+            </select>
+        </label>
+        <input [(ngModel)]="searchText" type="text" name="search" id="search"
+            placeholder="Write your title/author here">
+        <button (click)="handleSearch()">Search</button>
     </article>
 
+    <app-filter [cleanCate]="cleanCate" (category)="handleCategoryChange($event)"></app-filter>
     <div class="searchResults">
-        <app-filter [cleanCate]="cleanCate" (category)="handleCategoryChange($event)">
-        </app-filter>
         <article *ngFor="let result of results">
             <app-search-result-item [selectedCategory]="selectedCategory" [result]="result"></app-search-result-item>
         </article>

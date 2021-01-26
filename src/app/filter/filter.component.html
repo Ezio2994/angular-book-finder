@@ -1,10 +1,12 @@
 <div>
-    <select name="category" id="category" (change)="handleChange($event)">
-        <option value=""></option>
-        <ng-container *ngFor="let clean of cleanCate">
-            <option [value]="clean">
-                {{clean}}
-            </option>
-        </ng-container>
-    </select>
+    <label *ngIf="cleanCate.length" for="category"> Filter By Category <br>
+        <select name="category" id="category" (change)="handleChange($event)">
+            <option value=""></option>
+            <ng-container *ngFor="let clean of cleanCate">
+                <option [value]="clean">
+                    {{clean}}
+                </option>
+            </ng-container>
+        </select>
+    </label>
 </div>

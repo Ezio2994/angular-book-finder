@@ -1,8 +1,11 @@
-<article *ngIf="selectedCategory == ''">
+<article class="bookCard" *ngIf="selectedCategory == ''">
     <img [src]=" result.volumeInfo.imageLinks.thumbnail" alt="">
     <p>Category: <br> {{result.volumeInfo.categories}}</p>
+    <button (click)="addFav()" *ngIf="!isFav.includes(result.id)"><i class="far fa-heart"></i></button>
+    <button *ngIf="isFav.includes(result.id)"><i class="fas fa-heart"></i></button>
 </article>
-<article *ngIf="result.volumeInfo.categories == selectedCategory && result.volumeInfo.categories !=undefined ">
+<article class="bookCard"
+    *ngIf="result.volumeInfo.categories == selectedCategory && result.volumeInfo.categories !=undefined ">
     <img [src]=" result.volumeInfo.imageLinks.thumbnail" alt="">
     <p>Category: <br> {{result.volumeInfo.categories}}</p>
 </article>

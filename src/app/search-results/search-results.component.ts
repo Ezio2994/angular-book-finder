@@ -10,6 +10,7 @@ import { FilterComponent } from '../filter/filter.component';
 export class SearchResultsComponent implements OnInit {
 
   searchText: string
+  searchBy: string = "intitle"
   results: any;
   selectedCategory: any;
   cate: string[] = [];
@@ -27,14 +28,25 @@ export class SearchResultsComponent implements OnInit {
 
 
   handleSearch() {
-
-    this.http.get(`https://www.googleapis.com/books/v1/volumes?q=inauthor=${this.searchText}`).toPromise()
+    this.cate = []
+    this.cleanCate = []
+    this.http.get(`https://www.googleapis.com/books/v1/volumes?q=${this.searchBy}=${this.searchText}`).toPromise()
       .then((response: any) => {
         this.results = response.items
+        console.log(this.results)
         this.selectedCategory = ""
         this.child.handleInputs();
         this.results.map(res => res.volumeInfo.categories ? this.cate.push(...res.volumeInfo.categories) : null)
         this.cate.forEach(cate => !this.cleanCate.includes(cate) ? this.cleanCate.push(cate) : null)
+      })
+    this.prova()
+  }
+
+  prova() {
+    this.http.get(`https://www.googleapis.com/books/v1/volumes/AQtaQe4-qmwC`).toPromise()
+      .then((response: any) => {
+
+        console.log(response)
       })
   }
 

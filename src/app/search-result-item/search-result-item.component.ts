@@ -10,6 +10,8 @@ export class SearchResultItemComponent implements OnInit {
   @Input() result: any;
   @Input() selectedCategory: any
 
+  isFav: string[] = ["iscoAQAAMAAJ"];
+
 
 
   constructor() {
@@ -18,6 +20,13 @@ export class SearchResultItemComponent implements OnInit {
   }
 
   ngOnInit(): void {
+  }
+
+  addFav() {
+    this.isFav.push(this.result.id);
+    console.log(this.isFav);
+
+
   }
 
 }
