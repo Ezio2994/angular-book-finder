@@ -1,0 +1,18 @@
+<section class="search">
+    <h2>Search for the author:</h2>
+    <article class="searchSection">
+        <input [(ngModel)]="searchText" type="text" name="search" id="search" placeholder="e.g 'Tolkien'">
+        <button (click)="handleSearch()">search</button>
+    </article>
+
+    <div class="searchResults">
+        <app-filter [cleanCate]="cleanCate" (category)="handleCategoryChange($event)">
+        </app-filter>
+        <article *ngFor="let result of results">
+            <app-search-result-item [selectedCategory]="selectedCategory" [result]="result"></app-search-result-item>
+        </article>
+    </div>
+
+    <button><a routerLink="">Homepage</a></button>
+
+</section>

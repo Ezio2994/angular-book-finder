@@ -1,0 +1,8 @@
+<article *ngIf="selectedCategory == ''">
+    <img [src]=" result.volumeInfo.imageLinks.thumbnail" alt="">
+    <p>Category: <br> {{result.volumeInfo.categories}}</p>
+</article>
+<article *ngIf="result.volumeInfo.categories == selectedCategory && result.volumeInfo.categories !=undefined ">
+    <img [src]=" result.volumeInfo.imageLinks.thumbnail" alt="">
+    <p>Category: <br> {{result.volumeInfo.categories}}</p>
+</article>

@@ -1,0 +1,10 @@
+<div>
+    <select name="category" id="category" (change)="handleChange($event)">
+        <option value=""></option>
+        <ng-container *ngFor="let clean of cleanCate">
+            <option [value]="clean">
+                {{clean}}
+            </option>
+        </ng-container>
+    </select>
+</div>
