@@ -1,9 +1,7 @@
 <app-navbar></app-navbar>
-<h2>Favourites</h2>
-
-<ng-container *ngIf="CrudOperationsService.generatedBooks">
-    <section class="favourites" *ngFor="let favs of CrudOperationsService.generatedBooks">
+<section class="favourites" *ngIf="CrudOperationsService.generatedBooks">
+    <h2>Favourites</h2>
+    <article *ngFor="let favs of CrudOperationsService.generatedBooks">
         <app-search-result-item fromFav="fromFav" [result]="favs"></app-search-result-item>
-        <p>ciao</p>
-    </section>
-</ng-container>
+    </article>
+</section>

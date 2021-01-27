@@ -14,7 +14,9 @@ export class FavouritesComponent implements OnInit {
     public CrudOperationsService: CrudOperationsService
   ) {
     // CrudOperationsService.fetchFav()
-    console.log(CrudOperationsService);
+    CrudOperationsService.generateFavs()
+    console.log("soo");
+
 
   }
 

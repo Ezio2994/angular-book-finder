@@ -40,6 +40,7 @@ export class SearchResultsComponent implements OnInit {
     this.http.get(`https://www.googleapis.com/books/v1/volumes?q=${this.searchBy}=${this.searchText}`).toPromise()
       .then((response: any) => {
         this.results = response.items
+        console.log(this.results);
         console.log(this.results)
         this.selectedCategory = ""
         this.child.handleInputs();

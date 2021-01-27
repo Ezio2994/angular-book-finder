@@ -1,0 +1,10 @@
+.favourites {
+    display: flex;
+    background-color: lightblue;
+    justify-content: center;
+    width: 100%;
+    min-height: 90vh;
+    overflow: auto;
+    margin: 0 auto;
+    flex-wrap: wrap;
+}

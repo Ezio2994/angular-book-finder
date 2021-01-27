@@ -12,7 +12,6 @@ export class CrudOperationsService {
   favourites: any[] = [];
   generatedBooks: any[] = [];
 
-
   constructor(
     private firestore: AngularFirestore,
     private http: HttpClient,
@@ -34,10 +33,12 @@ export class CrudOperationsService {
   };
 
   addFav(result) {
-    const title = result.volumeInfo.title.includes("/") ? result.volumeInfo.title.replace("/", "-") : result.volumeInfo.title
+    const title = result.volumeInfo.title.includes("/") || result.volumeInfo.title.includes(".") ? result.volumeInfo.title.replaceAll(/[/&.]/g, "-") : result.volumeInfo.title
+    console.log(title);
+    console.log(result.id);
 
     this.firestore.collection("users").doc("Favourites").update({
-      [title]: result.id
+      [title.toString()]: result.id
     });
     this.favourites.push(result.id)
     console.log(this.favourites);

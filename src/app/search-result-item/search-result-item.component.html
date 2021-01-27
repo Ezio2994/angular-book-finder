@@ -13,7 +13,7 @@
 </article>
 <article class="bookCard" *ngIf="result.isFav">
     <img [src]=" result.volumeInfo.imageLinks.thumbnail" alt="">
-    <p>Category: <br> {{result.volumeInfo.categories}}</p>
+    <p>Category: <br> {{result.volumeInfo.categories[0]}}</p>
     <button (click)="CrudOperationsService.addFav(result)"
         *ngIf="!CrudOperationsService.favourites.includes(result.id)"><i class="far fa-heart"></i></button>
     <button (click)="CrudOperationsService.removeFav(result)"
