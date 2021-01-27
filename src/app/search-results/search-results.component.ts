@@ -1,6 +1,8 @@
 import { Component, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { FilterComponent } from '../filter/filter.component';
+import { AngularFirestore } from '@angular/fire/firestore';
+
 
 @Component({
   selector: 'app-search-results',
@@ -16,12 +18,16 @@ export class SearchResultsComponent implements OnInit {
   cate: string[] = [];
   cleanCate: string[] = [];
 
+  constructor(
+    private http: HttpClient,
+    public firestore: AngularFirestore
 
-  constructor(private http: HttpClient) {
+  ) {
 
   }
 
   ngOnInit(): void {
+
   }
 
   @ViewChild(FilterComponent) child: FilterComponent;
@@ -39,18 +45,18 @@ export class SearchResultsComponent implements OnInit {
         this.results.map(res => res.volumeInfo.categories ? this.cate.push(...res.volumeInfo.categories) : null)
         this.cate.forEach(cate => !this.cleanCate.includes(cate) ? this.cleanCate.push(cate) : null)
       })
-    this.prova()
   }
 
-  prova() {
-    this.http.get(`https://www.googleapis.com/books/v1/volumes/AQtaQe4-qmwC`).toPromise()
-      .then((response: any) => {
+  // prova() {
+  //   this.http.get(`https://www.googleapis.com/books/v1/volumes/AQtaQe4-qmwC`).toPromise()
+  //     .then((response: any) => {
 
-        console.log(response)
-      })
-  }
+  //       console.log(response)
+  //     })
+  // }
 
   handleCategoryChange(event) {
     this.selectedCategory = event
   }
+
 }

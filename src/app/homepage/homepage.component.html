@@ -2,7 +2,8 @@
     <img src="https://ptbook.liverpool.ac.uk/imgs/Book_Footer_Web.png" alt="">
     <h1>Welcome to Book Finder!</h1>
     <article>
-        <button>LogIn</button>
+        <button *ngIf="!authService.userData" (click)="authService.GoogleAuth()">LogIn</button>
+        <button *ngIf="authService.userData" (click)="authService.signOut()">logOut</button>
         <button><a routerLink="search">Enter as guest</a></button>
     </article>
 </section>
