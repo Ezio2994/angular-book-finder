@@ -16,6 +16,8 @@ import { SearchResultItemComponent } from './search-result-item/search-result-it
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { SigninComponent } from './signin/signin.component';
+import { NavbarComponent } from './navbar/navbar.component';
+import { FavouritesComponent } from './favourites/favourites.component';
 
 const firebaseConfig = {
   apiKey: "AIzaSyBug7xJ89eblDhGP3tjr8BOo9z8HNz2R9o",
@@ -36,6 +38,8 @@ const firebaseConfig = {
     FilterComponent,
     SearchResultItemComponent,
     SigninComponent,
+    NavbarComponent,
+    FavouritesComponent,
   ],
   imports: [
     BrowserModule,

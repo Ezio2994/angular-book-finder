@@ -23,7 +23,7 @@ export class AuthService {
         // localStorage.setItem('user', JSON.stringify(this.userData));
         // JSON.parse(localStorage.getItem('user'));
         console.log(this.userData);
-        this.router.navigate(['search']);
+        // this.router.navigate(['search']);
 
       } else {
         console.log("done");

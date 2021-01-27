@@ -2,6 +2,7 @@ import { Component, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { FilterComponent } from '../filter/filter.component';
 import { AngularFirestore } from '@angular/fire/firestore';
+import { NavbarComponent } from "../navbar/navbar.component"
 
 
 @Component({
