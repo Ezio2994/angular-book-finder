@@ -49,14 +49,6 @@ export class SearchResultsComponent implements OnInit {
       })
   }
 
-  // prova() {
-  //   this.http.get(`https://www.googleapis.com/books/v1/volumes/AQtaQe4-qmwC`).toPromise()
-  //     .then((response: any) => {
-
-  //       console.log(response)
-  //     })
-  // }
-
   handleCategoryChange(event) {
     this.selectedCategory = event
   }

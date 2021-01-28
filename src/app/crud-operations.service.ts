@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { HttpClient } from "@angular/common/http"
+import { AuthService } from "./auth.service"
 import firebase from 'firebase/app'
 import 'firebase/firestore'
 
@@ -12,23 +13,29 @@ export class CrudOperationsService {
   favourites: any[] = [];
   generatedBooks: any[] = [];
 
+
   constructor(
     private firestore: AngularFirestore,
     private http: HttpClient,
+    private authService: AuthService
   ) {
-    this.fetchFav()
+    console.log(this.authService.userData)
+    this.authService.userData ? this.fetchFav() : setTimeout(this.fetchFav, 2000)
   }
+
+
+
 
   fetchFav() {
     this.favourites = []
-    console.log("done");
 
-
-    this.firestore.collection('users').doc("Favourites").get()
+    this.firestore.collection('users').doc(this.authService.userData.uid).collection("favourites").doc("list").get()
       .subscribe((doc) => {
-        this.favourites.push(...Object.values(doc.data()))
-        console.log(this.favourites);
-        this.generateFavs()
+        if (doc.data()) {
+          this.favourites.push(...Object.values(doc.data()))
+          console.log(this.favourites);
+          this.generateFavs()
+        }
       })
   };
 
@@ -37,7 +44,8 @@ export class CrudOperationsService {
     console.log(title);
     console.log(result.id);
 
-    this.firestore.collection("users").doc("Favourites").update({
+
+    this.firestore.collection('users').doc(this.authService.userData.uid).collection("favourites").doc("list").update({
       [title.toString()]: result.id
     });
     this.favourites.push(result.id)
@@ -48,7 +56,7 @@ export class CrudOperationsService {
   removeFav(result) {
     const title = result.volumeInfo.title.includes("/") ? result.volumeInfo.title.replace("/", "-") : result.volumeInfo.title
 
-    this.firestore.collection("users").doc("Favourites").update({
+    this.firestore.collection('users').doc(this.authService.userData.uid).collection("favourites").doc("list").update({
       [title]: firebase.firestore.FieldValue.delete()
     })
     const index = this.favourites.indexOf(result.id)

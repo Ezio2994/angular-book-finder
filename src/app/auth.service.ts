@@ -17,21 +17,7 @@ export class AuthService {
     public router: Router,
     private _ngZone: NgZone
   ) {
-
-    this.afAuth.authState.subscribe(user => {
-      if (user) {
-        this.userData = user;
-        // localStorage.setItem('user', JSON.stringify(this.userData));
-        // JSON.parse(localStorage.getItem('user'));
-        console.log(this.userData);
-
-      } else {
-        console.log("done");
-        this.userData = null;
-        // localStorage.setItem('user', null);
-        // JSON.parse(localStorage.getItem('user'));
-      }
-    })
+    this.getUser()
   }
 
   // Sign in with Google
@@ -57,7 +43,23 @@ export class AuthService {
     }).catch((error) => {
       console.log(error)
     })
+  }
 
+  getUser() {
+    this.afAuth.authState.subscribe(user => {
+      if (user) {
+        this.userData = user;
+        // localStorage.setItem('user', JSON.stringify(this.userData));
+        // JSON.parse(localStorage.getItem('user'));
+        console.log(this.userData);
+
+      } else {
+        console.log("done");
+        this.userData = null;
+        // localStorage.setItem('user', null);
+        // JSON.parse(localStorage.getItem('user'));
+      }
+    })
   }
 
 }
