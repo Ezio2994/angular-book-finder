@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, NgZone } from '@angular/core';
 import { AngularFireAuth } from "@angular/fire/auth";
 import firebase from 'firebase/app';
 import 'firebase/auth';
@@ -14,7 +14,8 @@ export class AuthService {
 
   constructor(
     public afAuth: AngularFireAuth, // Inject Firebase auth service
-    public router: Router
+    public router: Router,
+    private _ngZone: NgZone
   ) {
 
     this.afAuth.authState.subscribe(user => {
@@ -23,7 +24,6 @@ export class AuthService {
         // localStorage.setItem('user', JSON.stringify(this.userData));
         // JSON.parse(localStorage.getItem('user'));
         console.log(this.userData);
-        // this.router.navigate(['search']);
 
       } else {
         console.log("done");
@@ -44,6 +44,7 @@ export class AuthService {
     firebase.auth().signInWithPopup(provider)
       .then((result) => {
         console.log('You have been successfully logged in!')
+        this._ngZone.run(() => this.router.navigate(['search']));
       }).catch((error) => {
         console.log(error)
       })
@@ -52,6 +53,7 @@ export class AuthService {
   signOut() {
     firebase.auth().signOut().then((result) => {
       console.log("Logged out");
+      this._ngZone.run(() => this.router.navigate(['/']));
     }).catch((error) => {
       console.log(error)
     })

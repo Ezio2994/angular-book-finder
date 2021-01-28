@@ -4,6 +4,12 @@
     <article>
         <button *ngIf="!authService.userData" (click)="authService.GoogleAuth()">LogIn</button>
         <button *ngIf="authService.userData" (click)="authService.signOut()">logOut</button>
-        <button><a routerLink="search">Enter as guest</a></button>
+        <!-- <button><a routerLink="search">Enter as guest</a></button> -->
+        <div *ngIf="!authService.userData; else elseBlock">
+            <button><a routerLink="search">Enter as guest</a></button>
+        </div>
+        <ng-template #elseBlock>
+            <button><a routerLink="search">Enter</a></button>
+        </ng-template>
     </article>
 </section>
