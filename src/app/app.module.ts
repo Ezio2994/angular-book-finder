@@ -9,13 +9,11 @@ import { environment } from "../environments/environment"
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomepageComponent } from './homepage/homepage.component';
-import { SearchbarComponent } from './searchbar/searchbar.component';
 import { SearchResultsComponent } from './search-results/search-results.component';
 import { FilterComponent } from './filter/filter.component';
 import { SearchResultItemComponent } from './search-result-item/search-result-item.component';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-import { SigninComponent } from './signin/signin.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { FavouritesComponent } from './favourites/favourites.component';
 
@@ -33,11 +31,9 @@ const firebaseConfig = {
   declarations: [
     AppComponent,
     HomepageComponent,
-    SearchbarComponent,
     SearchResultsComponent,
     FilterComponent,
     SearchResultItemComponent,
-    SigninComponent,
     NavbarComponent,
     FavouritesComponent,
   ],

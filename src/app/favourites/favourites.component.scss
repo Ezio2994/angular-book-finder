@@ -1,10 +1,25 @@
 .favourites {
     display: flex;
     background-color: lightblue;
-    justify-content: center;
     width: 100%;
+    flex-direction: column;
+    align-items: center;
     min-height: 90vh;
     overflow: auto;
     margin: 0 auto;
     flex-wrap: wrap;
+
+    h2 {
+        margin: 20px 0;
+    }
+
+    div {
+        display: flex;
+        justify-content: center;
+        width: 80%;
+        padding: 10px;
+        border: 3px double lightseagreen;
+        overflow: auto;
+        flex-wrap: wrap;    
+    }
 }
