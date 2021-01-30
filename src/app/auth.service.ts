@@ -29,7 +29,7 @@ export class AuthService {
 
   AuthLogin(provider) {
     firebase.auth().signInWithPopup(provider)
-      .then((result) => {
+      .then(() => {
         console.log('You have been successfully logged in!')
         this._ngZone.run(() => this.router.navigate(['search']));
       }).catch((error) => {
@@ -38,7 +38,7 @@ export class AuthService {
   }
 
   signOut() {
-    firebase.auth().signOut().then((result) => {
+    firebase.auth().signOut().then(() => {
       console.log("Logged out");
       this._ngZone.run(() => this.router.navigate(['/']));
     }).catch((error) => {
@@ -61,5 +61,4 @@ export class AuthService {
       }
     })
   }
-
 }

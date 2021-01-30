@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { CrudOperationsService } from "../crud-operations.service"
+import { AuthService } from "../auth.service"
 
 @Component({
   selector: 'app-search-result-item',
@@ -13,23 +14,12 @@ export class SearchResultItemComponent implements OnInit {
 
 
   constructor(
-    public CrudOperationsService: CrudOperationsService
+    public CrudOperationsService: CrudOperationsService,
+    public authService: AuthService
   ) {
   }
 
   ngOnInit(): void {
   }
-
-  // addFav() {
-  //   this.isFav.push(this.result.id);
-  //   console.log(this.isFav);
-  // }
-
-  // removeFav() {
-  //   const index = this.isFav.indexOf(this.result.id)
-  //   this.isFav.splice(index, 1)
-  //   console.log(this.isFav);
-
-  // }
 
 }

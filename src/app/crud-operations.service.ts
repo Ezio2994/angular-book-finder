@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { HttpClient } from "@angular/common/http"
-import { AuthService } from "./auth.service"
 import firebase from 'firebase/app'
 import 'firebase/firestore'
 
@@ -12,7 +11,7 @@ import 'firebase/firestore'
 export class CrudOperationsService {
   favourites: any[] = [];
   generatedBooks: any[] = [];
-  userId: string
+  userId: string;
 
 
   constructor(
@@ -20,7 +19,6 @@ export class CrudOperationsService {
     private http: HttpClient,
   ) {
   }
-
 
   fetchFav(user) {
     this.favourites = []
