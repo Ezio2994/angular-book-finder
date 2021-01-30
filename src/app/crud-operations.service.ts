@@ -12,24 +12,23 @@ import 'firebase/firestore'
 export class CrudOperationsService {
   favourites: any[] = [];
   generatedBooks: any[] = [];
+  userId: string
 
 
   constructor(
     private firestore: AngularFirestore,
     private http: HttpClient,
-    private authService: AuthService
   ) {
-    console.log(this.authService.userData)
-    this.authService.userData ? this.fetchFav() : setTimeout(this.fetchFav, 2000)
   }
 
 
-
-
-  fetchFav() {
+  fetchFav(user) {
     this.favourites = []
+    this.userId = user
+    console.log(this.userId);
 
-    this.firestore.collection('users').doc(this.authService.userData.uid).collection("favourites").doc("list").get()
+
+    this.firestore.collection('users').doc(user).collection("favourites").doc("list").get()
       .subscribe((doc) => {
         if (doc.data()) {
           this.favourites.push(...Object.values(doc.data()))
@@ -45,18 +44,19 @@ export class CrudOperationsService {
     console.log(result.id);
 
 
-    this.firestore.collection('users').doc(this.authService.userData.uid).collection("favourites").doc("list").update({
+    this.firestore.collection('users').doc(this.userId).collection("favourites").doc("list").update({
       [title.toString()]: result.id
     });
     this.favourites.push(result.id)
     console.log(this.favourites);
+    this.generateFavs()
 
   }
 
   removeFav(result) {
     const title = result.volumeInfo.title.includes("/") ? result.volumeInfo.title.replace("/", "-") : result.volumeInfo.title
 
-    this.firestore.collection('users').doc(this.authService.userData.uid).collection("favourites").doc("list").update({
+    this.firestore.collection('users').doc(this.userId).collection("favourites").doc("list").update({
       [title]: firebase.firestore.FieldValue.delete()
     })
     const index = this.favourites.indexOf(result.id)

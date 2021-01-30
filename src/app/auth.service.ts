@@ -1,4 +1,5 @@
 import { Injectable, NgZone } from '@angular/core';
+import { CrudOperationsService } from "./crud-operations.service"
 import { AngularFireAuth } from "@angular/fire/auth";
 import firebase from 'firebase/app';
 import 'firebase/auth';
@@ -13,19 +14,19 @@ export class AuthService {
   userData: any;
 
   constructor(
-    public afAuth: AngularFireAuth, // Inject Firebase auth service
+    public afAuth: AngularFireAuth,
+    public CrudOperationsService: CrudOperationsService,
     public router: Router,
-    private _ngZone: NgZone
+    private _ngZone: NgZone,
   ) {
     this.getUser()
+    console.log(this.userData);
   }
 
-  // Sign in with Google
   GoogleAuth() {
     this.AuthLogin(new firebase.auth.GoogleAuthProvider());
   }
 
-  // Auth logic to run auth providers
   AuthLogin(provider) {
     firebase.auth().signInWithPopup(provider)
       .then((result) => {
@@ -51,10 +52,9 @@ export class AuthService {
         this.userData = user;
         // localStorage.setItem('user', JSON.stringify(this.userData));
         // JSON.parse(localStorage.getItem('user'));
-        console.log(this.userData);
+        this.CrudOperationsService.fetchFav(user.uid)
 
       } else {
-        console.log("done");
         this.userData = null;
         // localStorage.setItem('user', null);
         // JSON.parse(localStorage.getItem('user'));
