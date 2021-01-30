@@ -1,16 +1,17 @@
 <section class="homepage">
-    <img src="https://ptbook.liverpool.ac.uk/imgs/Book_Footer_Web.png" alt="">
+    <img class="booksBG" src="https://ptbook.liverpool.ac.uk/imgs/Book_Footer_Web.png" alt="">
     <h1>Welcome to Book Finder!</h1>
+    <p *ngIf="!authService.userData">Sign In in order to use features like saving books amoung "your favourites"</p>
     <article>
-        <button *ngIf="!authService.userData" (click)="authService.GoogleAuth()">LogIn</button>
+        <img *ngIf="!authService.userData" (click)="authService.GoogleAuth()"
+            src="../../assets/btn_google_signin_dark_focus_web.png" alt="">
         <button *ngIf="authService.userData" (click)="authService.signOut()">logOut</button>
-        <!-- <button><a routerLink="search">Enter as guest</a></button> -->
         <div *ngIf="!authService.userData; else elseBlock">
-            <button><a routerLink="search">Enter as guest</a></button>
+            <a routerLink="search"><button>Enter as guest</button></a>
         </div>
         <ng-template #elseBlock>
-            <button><a routerLink="search">Enter</a></button>
+            <a routerLink="search"><button>Enter</button></a>
         </ng-template>
     </article>
-    <img src="https://ptbook.liverpool.ac.uk/imgs/Book_Footer_Web.png" alt="">
+    <img class="booksBG" src="https://ptbook.liverpool.ac.uk/imgs/Book_Footer_Web.png" alt="">
 </section>

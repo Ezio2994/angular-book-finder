@@ -1,6 +1,12 @@
 .bookCard {
-    height: 250px;
+    height: 300px;
     width: 250px;
+    text-align: center;
+
+    button {
+        border: 0;
+        background-color: transparent;
+    }
 
     img {
         height: 150px;

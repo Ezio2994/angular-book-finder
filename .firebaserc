@@ -1,5 +1,14 @@
 {
   "projects": {
     "default": "angular-book-finder"
+  },
+  "targets": {
+    "angular-book-finder": {
+      "hosting": {
+        "book-finder": [
+          "angular-book-finder"
+        ]
+      }
+    }
   }
 }

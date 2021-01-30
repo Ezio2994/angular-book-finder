@@ -23,14 +23,11 @@ export class CrudOperationsService {
   fetchFav(user) {
     this.favourites = []
     this.userId = user
-    console.log(this.userId);
-
 
     this.firestore.collection('users').doc(user).collection("favourites").doc("list").get()
       .subscribe((doc) => {
         if (doc.data()) {
           this.favourites.push(...Object.values(doc.data()))
-          console.log(this.favourites);
           this.generateFavs()
         }
       })
@@ -38,15 +35,11 @@ export class CrudOperationsService {
 
   addFav(result) {
     const title = result.volumeInfo.title.includes("/") || result.volumeInfo.title.includes(".") ? result.volumeInfo.title.replaceAll(/[/&.]/g, "-") : result.volumeInfo.title
-    console.log(title);
-    console.log(result.id);
-
 
     this.firestore.collection('users').doc(this.userId).collection("favourites").doc("list").update({
       [title.toString()]: result.id
     });
     this.favourites.push(result.id)
-    console.log(this.favourites);
     this.generateFavs()
 
   }

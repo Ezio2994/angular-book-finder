@@ -12,6 +12,12 @@
     *ngIf="result.volumeInfo.categories == selectedCategory && result.volumeInfo.categories !=undefined ">
     <img [src]=" result.volumeInfo.imageLinks.thumbnail" alt="">
     <p>Category: <br> {{result.volumeInfo.categories}}</p>
+    <button (click)="CrudOperationsService.addFav(result)"
+        *ngIf="!CrudOperationsService.favourites.includes(result.id) && authService.userData"><i
+            class="far fa-heart"></i></button>
+    <button (click)="CrudOperationsService.removeFav(result)"
+        *ngIf="CrudOperationsService.favourites.includes(result.id)  && authService.userData"><i
+            class="fas fa-heart"></i></button>
 </article>
 <article class="bookCard" *ngIf="result.isFav">
     <img [src]=" result.volumeInfo.imageLinks.thumbnail" alt="">

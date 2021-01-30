@@ -20,7 +20,6 @@ export class AuthService {
     private _ngZone: NgZone,
   ) {
     this.getUser()
-    console.log(this.userData);
   }
 
   GoogleAuth() {

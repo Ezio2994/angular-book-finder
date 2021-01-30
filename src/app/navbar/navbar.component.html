@@ -2,8 +2,8 @@
     <article class="navBox">
         <h1><a routerLink="/">Book Finder</a></h1>
         <article class="links">
-            <button><a routerLink="/search">Search</a></button>
-            <button *ngIf="authService.userData"><a routerLink="/favourites">Favourites</a></button>
+            <a routerLink="/search"><button>Search</button></a>
+            <a *ngIf="authService.userData" routerLink="/favourites"><button>Favourites</button></a>
             <button *ngIf="!authService.userData" (click)="authService.GoogleAuth()">LogIn</button>
             <button *ngIf="authService.userData" (click)="authService.signOut()">logOut</button>
         </article>
