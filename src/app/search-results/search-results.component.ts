@@ -32,6 +32,8 @@ export class SearchResultsComponent implements OnInit {
     this.cleanCate = []
     this.http.get(`https://www.googleapis.com/books/v1/volumes?q=${this.searchBy}=${this.searchText}`).toPromise()
       .then((response: any) => {
+        console.log(response.items);
+
         this.results = response.items
         this.selectedCategory = ""
         this.results.map(res => res.volumeInfo.categories ? this.cate.push(...res.volumeInfo.categories) : null)

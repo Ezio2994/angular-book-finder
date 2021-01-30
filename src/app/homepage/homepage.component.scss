@@ -7,25 +7,35 @@
     width: 100%;
     background-color: lightblue;
 
+    h1 {
+        text-align: center;
+    }
+
     .booksBG {
         width: 100%;
     }
 
     article {
-        display: flex;
-        width: 30%;
-        justify-content: space-between;
+        display: inherit;
+        width: fit-content;
+        margin: 0 auto;
+
+        // justify-content: space-between;
 
         img {
             cursor: pointer;
             image-rendering: auto;
+            display: inline-block;
+            margin-right: 30px;
         }
 
         button {
+            display: inline-block;
             padding: 20px;
             border: none;
             border-radius: 25%;
             font-weight: bold;
+            margin-right: 30px;
 
             a {
                 text-decoration: none;
